@@ -1,0 +1,13 @@
+.not-found {
+  &__wrapper {
+    position: relative;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    background-color: #16b8ba;
+  }
+
+  &__image {
+    height: 560px;
+  }
+}
