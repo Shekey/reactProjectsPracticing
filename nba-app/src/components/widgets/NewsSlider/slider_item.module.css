@@ -1,0 +1,43 @@
+.featured_image {
+  height: 100%;
+  padding-bottom: 66%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.featured_item {
+  position: relative;
+}
+
+.featured_image::before {
+  content: '';
+  position: absolute;
+  background: #242424;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.featured_item a {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  right: 0;
+  text-decoration: none;
+  z-index: 1;
+  bottom: 0;
+}
+
+.featured_caption {
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  color: #fff;
+  padding: 20px;
+  font-weight: 300;
+  font-size: 28px;
+  box-sizing: border-box;
+}
