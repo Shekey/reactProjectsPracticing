@@ -1,0 +1,19 @@
+.cardinfo {
+  font-size: 11px;
+}
+
+.cardinfo span:last-of-type {
+  margin-right: 2px;
+  margin-left: 4px;
+}
+
+.teamname {
+  margin-right: 7px;
+  background: #d1d1d1;
+  color: #fff;
+  padding: 2px 5px;
+}
+
+.date {
+  color: #2196f3;
+}

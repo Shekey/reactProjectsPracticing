@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { URL } from '../../../config';
 
 import SliderTemplates from './slider_templates';
 
@@ -10,7 +11,7 @@ class NewsSlider extends Component {
 
   constructor(props) {
     super(props);
-    axios.get(`http://localhost:3333/articles?_start=${this.props.start}&_end=${this.props.amount} `).then(response => {
+    axios.get(`${URL}/articles?_start=${this.props.start}&_end=${this.props.amount} `).then(response => {
       this.setState({
         news: response.data
       })
