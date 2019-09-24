@@ -3,7 +3,6 @@ import userHoc from '../hoc/userHoc'
 
 
 const Profile = (props) => {
-  console.log(props);
   return ( <div>
     This is cool
   </div> );

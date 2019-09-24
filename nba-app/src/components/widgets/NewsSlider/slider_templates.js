@@ -4,8 +4,6 @@ import style from './slider_item.module.css'
 import { Link } from 'react-router-dom';
 
 const NewsTemplates = (props) => {
-  console.log(props);
-
   let template = null;
   const settings = {
     dots: true,

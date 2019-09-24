@@ -75,7 +75,6 @@ class VideosList extends Component {
   />
   }
   render() { 
-    console.log(this.state.videos);
     return ( <div className={styles.videoslist}>
       { this.renderTitle() }
       { this.renderVideos() }

@@ -49,7 +49,7 @@ class NewsList extends Component {
             }}  timeout={500} key={i}>
             <div>
               <div className={styles.newslist_item}>
-                <Link to={`/articles/{${item.id}}`}>
+                <Link to={`/articles/${item.id}`}>
                   <CardInfo teams={this.state.teams} team={item.team} date={item.date}/>
                   <h2>{item.title}</h2>
                 </Link>
