@@ -58,6 +58,7 @@ class NewsList extends Component {
           </CSSTransition>
           )});
         break;
+        case('card-news'):
       default:
         template = null;
     }

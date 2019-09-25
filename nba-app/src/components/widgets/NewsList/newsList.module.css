@@ -5,6 +5,17 @@
   padding: 8px 5px 0 5px;
 }
 
+.newslist_item.newslist_on_page:first-of-type {
+  padding-top: 0;
+}
+
+.newslist_on_page {
+  padding-left: 0;
+  padding-right: 0;
+  border-left: none;
+  border-top: none;
+}
+
 .newslist_item h2 {
   font-size: 13px;
   line-height: 21px;

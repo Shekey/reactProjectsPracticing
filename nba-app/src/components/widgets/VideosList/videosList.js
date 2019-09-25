@@ -6,7 +6,7 @@ import Button from '../Buttons/buttons';
 import VideosTemplate from '../VideosList/videsListTemplate';
 
 class VideosList extends Component {
-  state = { 
+  state = {
     teams: [],
     videos: [],
     start: this.props.start,

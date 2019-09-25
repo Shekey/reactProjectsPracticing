@@ -17,3 +17,18 @@
 .date {
   color: #2196f3;
 }
+
+.card_image_wrap .left {
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  width: 90px;
+  height: 90px;
+}
+
+.card_image_wrap {
+  display: flex;
+}
+
+.card_image_wrap .right {
+  padding: 10px;
+}

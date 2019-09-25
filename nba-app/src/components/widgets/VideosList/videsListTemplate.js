@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './videosList.module.css';
-import Button from '../Buttons/buttons';
 import { Link } from 'react-router-dom';
 import CardInfo from '../CardInfo/cardinfo';
 
