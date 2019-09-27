@@ -25,21 +25,29 @@ const formFields = (props) => {
     : null;
   }
 
-  const changeHandler = (event,id) => {
+  const changeHandler = (event,id,touched) => {
     const newState = props.formData;
-
     newState[id].value=event.target.value;
 
-    let validData = validate(newState[id]);
-    newState[id].valid = validData[0];
-    newState[id].validationMessage = validData[1];
+    if (touched){
+      let validData = validate(newState[id]);
+      newState[id].valid = validData[0];
+      newState[id].validationMessage = validData[1];
+    }
 
-    console.log(newState);
+    newState[id].touched = touched;
+
     props.change(newState);
   }
 
   const validate = (element) => {
     let error = [true,''];
+
+    if(element.validation.minLength){
+      const valid = element.value.length >= element.validation.minLength;
+      const message = `${!valid ? 'Must be greater than '+ element.validation.minLength :''}`;
+      error = !valid?[valid,message]:error;
+    }
 
     if(element.validation.required){
       const valid = element.value.trim() !== '';
@@ -51,6 +59,19 @@ const formFields = (props) => {
     return error;
   }
 
+  const showValidationMessage = (data) => {
+    let errorMessage = null;
+    if(data.validation && !data.valid){
+      errorMessage = (
+        <div className="label_error">
+          {data.validationMessage}
+        </div>
+      )
+
+      return errorMessage; 
+    }
+  }
+
   const renderTemplates = (data) => {
     let formTemplate = '';
     let values = data.settings;
@@ -60,9 +81,15 @@ const formFields = (props) => {
       formTemplate = (
         <div>
           {showLabel(values.label, values.labelText)}
-          <input {...values.config} value={values.value} onChange={
-            (event) => changeHandler(event,data.id)
+          <input {...values.config} value={values.value}
+           onBlur={
+            (event) => changeHandler(event,data.id,true)
+          }
+           onChange={
+            (event) => changeHandler(event,data.id,false)
           }/>
+
+          {showValidationMessage(values)}
         </div>
       )
       break;

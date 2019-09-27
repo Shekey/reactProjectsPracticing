@@ -16,7 +16,8 @@ class User extends Component {
                     placeholder:'Please enter your name.',
                 },
                 validation: {
-                    required:false
+                    required:true,
+                    minLength:5
                 },
                 valid:false,
                 touched:false,
@@ -33,7 +34,8 @@ class User extends Component {
                     placeholder:'Please enter your Lastname.'
                 },
                 validation: {
-                    required:false
+                    required:true,
+                    minLength:5
                 },
                 valid:false,
                 touched:false,
@@ -49,7 +51,11 @@ class User extends Component {
                     placeholder:'Please enter your message.',
                     rows: 4,
                     cols: 36
-                }
+                },
+                validation: {
+                    required:false,
+                },
+                valid:true
             },
             age: {
                 element: 'select',
@@ -63,7 +69,11 @@ class User extends Component {
                         {val:2, text: '20-30'},
                         {val:3, text: '30-50'}
                     ]
-                }
+                },
+                validation: {
+                    required:false,
+                },
+                valid:true
             }
         }
     }
@@ -77,20 +87,27 @@ class User extends Component {
     submitForm = (event) => {
         event.preventDefault();
         let dataToSubmit = {};
+        let formIsValid = true;
 
         for(let key in this.state.formData){
             dataToSubmit[key] = this.state.formData[key].value;
-
         }
 
-        console.log(dataToSubmit);
+        for(let key in this.state.formData){
+            formIsValid = this.state.formData[key].valid && formIsValid;
+        }
+
+        if(formIsValid){
+            console.log(dataToSubmit);
+        }
+
     }
 
     render(){
         return(
             <div className="container">
                 <form onSubmit={this.submitForm}>
-                    <FormFields formData={this.state.formData} change={(newState) => this.updateForm(newState)} />
+                    <FormFields formData={this.state.formData} change={(newState) => this.updateForm(newState)} onblur={(newState) => this.updateForm(newState)}/>
                     <button type='submit'>Submit</button>
                 </form>
             </div>
