@@ -9,8 +9,8 @@ const Home = () => {
       dots:false
     }}/>
 
-    <NewsList type='card' loadMore={true} start={3} amount={3} />
-    <VideosList type='card' title={true} loadmore={true} start={3} amount={3}/>
+    {/* <NewsList type='card' loadMore={true} start={3} amount={3} />
+    <VideosList type='card' title={true} loadmore={true} start={3} amount={3}/> */}
   </div> );
 }
  
