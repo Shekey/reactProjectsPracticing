@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './videosList.module.css';
-import axios from 'axios';
-import { URL } from '../../../config';
+import { firebase, firebaseDB, firebaseLooper, firebaseTeams,firebaseVideos } from '../../../firebase';
+
 import Button from '../Buttons/buttons';
 import VideosTemplate from '../VideosList/videsListTemplate';
 
@@ -27,20 +27,24 @@ class VideosList extends Component {
 
   request = (start,end) => {
     if (this.state.teams.length < 1){
-      axios.get(`${URL}/teams`).then(response => {
+      firebaseVideos.once('value').then((snapshot) => {
+        const teams = firebaseLooper(snapshot);
         this.setState({
-          teams: response.data
-        })
+          teams,
+        });
       });
     }
 
-    axios.get(`${URL}/videos?_start=${start}&_end=${end}`).then(response => {
+    firebaseVideos.orderByChild('id').startAt(start).endAt(end).once('value').then((snapshot) => {
+      const videos = firebaseLooper(snapshot);
       this.setState({
-        videos: [...this.state.videos, ...response.data],
+        videos: [...this.state.videos, ...videos],
         start,
         end
-      })
-    })
+      });
+    }).catch( e=> {
+      console.log(e)
+    });
   }
   renderVideos = () => {
     let template = null;

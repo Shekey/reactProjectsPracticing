@@ -1,0 +1,30 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.container h2 {
+  font-weight: 300;
+  text-align: center;
+  font-size: 35px;
+}
+
+.container input {
+  font-size: 17px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  font-weight: 300;
+}
+
+.container button {
+  background: lightskyblue;
+  font-size: 13px;
+  padding: 10px;
+  color: #fff;
+  margin-top: 10px;
+  margin-right: 10px;
+}

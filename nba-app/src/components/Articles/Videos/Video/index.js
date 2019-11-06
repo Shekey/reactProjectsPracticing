@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { URL } from '../../../../config';
+import { firebase, firebaseDB, firebaseLooper, firebaseTeams,firebaseVideos } from '../../../../firebase';
+
 import styles from '../../articles.module.css'
 import Header from './header';
 import VideosRelated from '../../../widgets/VideosList/VideosRelated/videosrelated';
@@ -10,28 +10,29 @@ class VideosArticle extends Component {
 
   constructor(props) {
     super(props);
-    axios.get(`${URL}/videos?id=${this.props.match.params.id}`).then((response) => {
-      let article = response.data[0];
+    firebaseDB.ref(`videos/${this.props.match.params.id}`).once('value').then( (snapshot) => {
+      let article = snapshot.val();
 
-      axios.get(`${URL}/teams?id=${article.team}`).then((response) => {
+      firebaseTeams.orderByChild('teamId').equalTo(article.team).once('value').then( (snap) => {
+        const team = firebaseLooper(snap);
         this.setState({
           article,
-          team:response.data
-        });
-        console.log("team");
-        this.getRelated();
-      })
+          team
+        })
+      });
     });
+
+    this.getRelated();
   }
 
   getRelated = () => {
-    axios.get(`${URL}/teams`).then((response) => {
-      let teams = response.data;
-
-      axios.get(`${URL}/videos?q=${this.state.team[0].city}&_limit=3`).then( response => {
+    firebaseTeams.once('value').then( (snapshot) => {
+      const teams = firebaseLooper(snapshot);
+      firebaseVideos.orderByChild('team').equalTo(this.state.article.team).once('value').then( (snap) => {
+        const related = firebaseLooper(snap);
         this.setState({
           teams,
-          related: response.data
+          related
         });
       });
     });
@@ -49,8 +50,6 @@ class VideosArticle extends Component {
           width="100%" height="300px"
           src={`https://www.youtube.com/embed/${article.url}`}
         ></iframe>
-        {console.log(this.state.related)}
-        {console.log("related")}
         <VideosRelated teams ={this.state.teams} data={this.state.related}/>
       </div>
     </div>
