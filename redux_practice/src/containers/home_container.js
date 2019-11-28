@@ -14,8 +14,7 @@ class HomeContainer extends Component {
 
 
     getKeywords = (event) => {
-        let key = event.target.value;
-
+      let key = event.target.value;
       this.props.artistList(key);
     }
 

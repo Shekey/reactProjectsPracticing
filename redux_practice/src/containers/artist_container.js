@@ -7,42 +7,50 @@ class ArtistContainer extends Component {
     
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.props.artistDetail(this.props.match.params.id);
   }
-    render(){
-        console.log(this.props);
-        let artist = this.state.artist;
-        return (
-            <div className="artist_view">
-                <div className="artist_background" style={{
-                    background:`url(/images/${artist.cover})`
-                }}>
-                    <Link to="/">
-                        Back home
+
+  artistTemplate = (data) => (
+    data.artistData ? 
+        <div className="artist_view">
+            <div className="artist_background" style={{
+                background: `url(/images/${data.artistData[0].cover})`
+            }}>
+                <Link to="/">
+                    Back home
                     </Link>
-                    <div className="name">{artist.name}</div>
-                </div>
-                <div className="artist_description">
-                    <p>{artist.bio}</p>
-                    <div className="tags">
-                        <div>
-                            <strong>Style:</strong> {artist.style}
-                        </div>
+                <div className="name">{data.artistData[0].name}</div>
+            </div>
+            <div className="artist_description">
+                <p>{data.artistData[0].bio}</p>
+                <div className="tags">
+                    <div>
+                        <strong>Style:</strong> {data.artistData[0].style}
                     </div>
                 </div>
-                <div className="artist_album_list">
-                    { artist.albums ? 
-                        artist.albums.map( item =>(
+            </div>
+            <div className="artist_album_list">
+                {data.artistData[0].albums ?
+                    data.artistData[0].albums.map(item => (
                         <div key={item.cover} className="albums">
                             <div className="cover" style={{
-                                background:`url(/images/albums/${item.cover})`
+                                background: `url(/images/albums/${item.cover})`
                             }}>
                             </div>
                         </div>
                     ))
-                    :null
+                    : null
                 }
-                </div>
+            </div>
+        </div>
+    :null
+  )
+
+    render(){
+        return (
+            <div>
+                {this.artistTemplate(this.props.artists)}
             </div>
         );
     }
