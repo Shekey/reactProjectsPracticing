@@ -19,7 +19,7 @@ export class HomeContainer extends Component {
     return (
       <div>
         <Search keywords={this.getKeywords}/>
-        <ArtistList artists={this.props.artists.artistList}/>
+        <ArtistList artists={this.props.artistsContainer.artistList}/>
       </div>
     )
   }
@@ -27,7 +27,7 @@ export class HomeContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    artists: state.artists
+    artistsContainer: state.artistsContainer
   }
 }
 

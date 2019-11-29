@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { artistDetail } from '../actions';
+import { artistDetail,clearArtistDetail } from '../actions';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
@@ -9,6 +9,9 @@ export class ArtistContainer extends Component {
     super(props);
     console.log(this.props);
     this.props.artistDetail(this.props.match.params.id);
+  }
+  componentWillUnmount(){
+    this.props.clearArtistDetail();
   }
   artistTemplate = (data) => (
     data.artistData ? 
@@ -48,7 +51,7 @@ export class ArtistContainer extends Component {
   render() {
     return (
       <div>
-        {this.artistTemplate(this.props.artists)}
+        {this.artistTemplate(this.props.artistsContainer)}
       </div>
     )
   }
@@ -56,12 +59,12 @@ export class ArtistContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    artistData: state.artists
+    artistsContainer: state.artistsContainer
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({artistDetail},dispatch);
+  return bindActionCreators({artistDetail,clearArtistDetail},dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistContainer)
