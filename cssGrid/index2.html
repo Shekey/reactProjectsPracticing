@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS GRID 2</title>
+  <style>
+    .wrapper {
+      display: grid;
+      /* grid-template-columns: 1fr 1fr 1fr; */
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1em;
+      grid-auto-rows: minmax(100px, auto);
+    }
+
+    .wrapper>div {
+      background: #eee;
+      padding: 1em;
+    }
+
+    .wrapper>div:nth-child(odd) {
+      background: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>
+    <center>This is grid css</center>
+  </h1>
+  <div class="wrapper">
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quas ut natus sapiente aperiam magni eveniet
+      neque dolorum sequi sint nisi error deleniti, quaerat sit aspernatur laudantium nostrum quidem! Eligendi ipsam
+      explicabo commodi itaque nobis, consectetur expedita ipsum. Ea a magnam dicta atque iste quos mollitia facilis?</div>
+    <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam, esse maiores, porro amet ea odio
+      perferendis, accusamus voluptatum ipsum quae at. Corrupti, maxime sed vel labore consectetur rem fuga dolores?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quas ut natus sapiente aperiam magni eveniet
+      neque dolorum sequias nulla eveniet, modi atque sequi quia reprehenderit
+      repellendus cumque incidunt odio deserunt fugiat enim maiores recusandae autem eius rerum, tenetur nostrum?
+      Beatae tempora similique magnam!</div>
+    <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam, esse maiores, porro amet ea odio
+      perferendis, accusamus voluptatum ipsum quae at. Corrupti, maxime sed vel labore consectetur rem fuga dolores?</div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia porro quis deleniti ullam quisquam veniam
+      possimus impedit sint a officia temporibus vel, dicta mollitia, earum quae at sit totam incidunt molestiae
+      dolores fugiat consequatur nobis! Nam velit, laborum neque est consequuntur error nostrum totam similique, nisi
+      veniam vitae autem, exercitationem at nihil mollitia voluptatibus magnam. Similique odio aperiam cumque fuga enim
+      doloribus quae voluptas, repudiandae provident voluptate quisquam est architecto. Impedit, consectetur
+      doloremque? Nam impedit delectus doloribus! Voluptate quasi exercitationem pariatur vero! Doloremque id saepe
+      neque vel doloribus repellendus corporis, ullam debitis sint quis, nemo ea optio. Itaque, commodi. Ab?</div>
+  </div>
+</body>
+
+</html>
